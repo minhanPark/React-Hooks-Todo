@@ -1,23 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import { Colors } from "../Constants";
-import { useState, useDispatch } from "../Context";
-import { ADD } from "../Reducer/actions";
 
-const HeaderBg = styled.div``;
+const HeaderBg = styled.div`
+  width: 100%;
+  background-color: ${Colors.HeaderBg};
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+`;
 
-const HeaderText = styled.h1``;
+const HeaderText = styled.h1`
+  margin: 0;
+  color: ${Colors.White};
+  text-align: center;
+  font-weight: 700;
+  font-size: 36px;
+`;
 
 const Header = () => {
-  const state = useState();
-  const dispatch = useDispatch();
-  console.log(state.todos);
   return (
     <HeaderBg>
-      <HeaderText>sdsdsd</HeaderText>
-      <button onClick={() => dispatch({ type: ADD, payload: "테스트입니다." })}>
-        버튼
-      </button>
+      <HeaderText>To Do App</HeaderText>
     </HeaderBg>
   );
 };
