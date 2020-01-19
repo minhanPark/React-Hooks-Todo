@@ -1,7 +1,15 @@
 import React from "react";
+import TodoContextProvider from "./Context";
+import Header from "./Components/Header";
 
 function App() {
-  return <div className="App">Hello world</div>;
+  return (
+    <TodoContextProvider>
+      <div className="App">
+        <Header />
+      </div>
+    </TodoContextProvider>
+  );
 }
 
 export default App;
