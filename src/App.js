@@ -4,6 +4,7 @@ import TodoContextProvider from "./Context";
 import Header from "./Components/Header";
 import TodoInput from "./Components/TodoInput";
 import { Colors } from "./Constants";
+import TodoContainer from "./Components/TodoContainer";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -32,6 +33,7 @@ function App() {
         <Header />
         <Wrapper>
           <TodoInput />
+          <TodoContainer />
         </Wrapper>
       </div>
     </TodoContextProvider>
