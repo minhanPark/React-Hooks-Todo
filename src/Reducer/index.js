@@ -1,5 +1,5 @@
 import uuid from "uuid/v4";
-import { ADD, COMPLETE, UNCOMPLETE } from "./actions";
+import { ADD, COMPLETE, UNCOMPLETE, DELETE } from "./actions";
 
 export const initialState = {
   todos: []
@@ -38,6 +38,13 @@ const reducer = (state, action) => {
           ...state.todos.filter(todo => todo.id !== action.payload),
           { ...uncompletedTodo, completed: false }
         ]
+      };
+    case DELETE:
+      const undeletedArr = state.todos.filter(
+        todo => todo.id !== action.payload
+      );
+      return {
+        todos: [...undeletedArr]
       };
     default:
       return;

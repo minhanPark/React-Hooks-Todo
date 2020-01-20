@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Colors } from "../Constants";
 import Button from "./Button";
-import { COMPLETE, UNCOMPLETE } from "../Reducer/actions";
+import { COMPLETE, UNCOMPLETE, DELETE } from "../Reducer/actions";
 import { useDispatch } from "../Context";
 
 const SDiv = styled.div`
@@ -33,6 +33,7 @@ const Todo = ({ id, text, completed, modified }) => {
   const dispatch = useDispatch();
   const handleComplete = () => dispatch({ type: COMPLETE, payload: id });
   const handleUncomplete = () => dispatch({ type: UNCOMPLETE, payload: id });
+  const handleDelete = () => dispatch({ type: DELETE, payload: id });
   return (
     <SDiv completed={completed}>
       <SP completed={completed} id={id}>
@@ -45,7 +46,7 @@ const Todo = ({ id, text, completed, modified }) => {
           <Button text="완료" color="#1B9CFC" onClick={handleComplete} />
         )}
         <Button text="수정" color="#FEA47F" onClick={handleComplete} />
-        <Button text="삭제" color="#FC427B" onClick={handleComplete} />
+        <Button text="삭제" color="#FC427B" onClick={handleDelete} />
       </ButtonContainer>
     </SDiv>
   );
