@@ -1,5 +1,5 @@
 import uuid from "uuid/v4";
-import { ADD, COMPLETE } from "./actions";
+import { ADD, COMPLETE, UNCOMPLETE } from "./actions";
 
 export const initialState = {
   todos: []
@@ -20,10 +20,24 @@ const reducer = (state, action) => {
         ]
       };
     case COMPLETE:
-      const targetTodo = state.todos.find(todo => action.payload === todo.id);
-      const restArr = state.todos.filter(todo => todo.id !== action.payload);
+      const completedTodo = state.todos.find(
+        todo => action.payload === todo.id
+      );
       return {
-        todos: [...restArr, { ...targetTodo, completed: true }]
+        todos: [
+          ...state.todos.filter(todo => todo.id !== action.payload),
+          { ...completedTodo, completed: true }
+        ]
+      };
+    case UNCOMPLETE:
+      const uncompletedTodo = state.todos.find(
+        todo => action.payload === todo.id
+      );
+      return {
+        todos: [
+          ...state.todos.filter(todo => todo.id !== action.payload),
+          { ...uncompletedTodo, completed: false }
+        ]
       };
     default:
       return;

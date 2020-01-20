@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const SButton = styled.button`
   font-size: 18px;
@@ -15,5 +16,9 @@ const Button = ({ text, color, onClick }) => (
     {text}
   </SButton>
 );
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
 
 export default Button;

@@ -8,12 +8,13 @@ const SDiv = styled.div`
 `;
 
 const TodoContainer = () => {
-  const { todos } = useState();
-  console.log(todos);
+  const state = useState();
+  console.log("state is", state);
+  console.log("todos is", state.todos);
   return (
     <SDiv>
-      {todos &&
-        todos.map(todo => (
+      {state.todos &&
+        state.todos.map(todo => (
           <Todo
             key={todo.id}
             id={todo.id}

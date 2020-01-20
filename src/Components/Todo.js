@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { Colors } from "../Constants";
 import Button from "./Button";
-import { COMPLETE } from "../Reducer/actions";
+import { COMPLETE, UNCOMPLETE } from "../Reducer/actions";
 import { useDispatch } from "../Context";
 
 const SDiv = styled.div`
@@ -30,19 +30,22 @@ const ButtonContainer = styled.div`
 `;
 
 const Todo = ({ id, text, completed, modified }) => {
-  const handleComplete = () => {
-    dispatch({ action: COMPLETE, payload: id });
-  };
   const dispatch = useDispatch();
+  const handleComplete = () => dispatch({ type: COMPLETE, payload: id });
+  const handleUncomplete = () => dispatch({ type: UNCOMPLETE, payload: id });
   return (
     <SDiv completed={completed}>
       <SP completed={completed} id={id}>
         {text}
       </SP>
       <ButtonContainer>
-        <Button text="완료" color="#1B9CFC" onClick={handleComplete} />
-        <Button text="수정" color="#FEA47F" />
-        <Button text="삭제" color="#FC427B" />
+        {completed ? (
+          <Button text="취소" color="#3B3B98" onClick={handleUncomplete} />
+        ) : (
+          <Button text="완료" color="#1B9CFC" onClick={handleComplete} />
+        )}
+        <Button text="수정" color="#FEA47F" onClick={handleComplete} />
+        <Button text="삭제" color="#FC427B" onClick={handleComplete} />
       </ButtonContainer>
     </SDiv>
   );
