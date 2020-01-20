@@ -9,8 +9,6 @@ const SDiv = styled.div`
 
 const TodoContainer = () => {
   const state = useState();
-  console.log("state is", state);
-  console.log("todos is", state.todos);
   return (
     <SDiv>
       {state.todos &&

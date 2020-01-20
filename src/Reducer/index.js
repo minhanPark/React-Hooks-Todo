@@ -1,5 +1,5 @@
 import uuid from "uuid/v4";
-import { ADD, COMPLETE, UNCOMPLETE, DELETE } from "./actions";
+import { ADD, COMPLETE, UNCOMPLETE, DELETE, MODIFY, UNMODIFY } from "./actions";
 
 export const initialState = {
   todos: []
@@ -45,6 +45,28 @@ const reducer = (state, action) => {
       );
       return {
         todos: [...undeletedArr]
+      };
+    case MODIFY:
+      const modifiedTodo = state.todos.find(todo => todo.id === action.payload);
+      const arrIndex = state.todos.findIndex(i => i.id === modifiedTodo.id);
+      return {
+        todos: [
+          ...state.todos.slice(0, arrIndex),
+          { ...modifiedTodo, modified: true },
+          ...state.todos.slice(arrIndex + 1)
+        ]
+      };
+    case UNMODIFY:
+      const unmodifiedTodo = state.todos.find(
+        todo => todo.id === action.payload.id
+      );
+      const arrayIndex = state.todos.findIndex(i => i.id === unmodifiedTodo.id);
+      return {
+        todos: [
+          ...state.todos.slice(0, arrayIndex),
+          { ...unmodifiedTodo, modified: false, text: action.payload.text },
+          ...state.todos.slice(arrayIndex + 1)
+        ]
       };
     default:
       return;
